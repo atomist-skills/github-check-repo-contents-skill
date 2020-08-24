@@ -15,7 +15,7 @@
     "@atomist/skill-bundler": "^0.1.15",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "prettier": "^2.0.5"
+    "prettier": "^2.1.0"
   },
   "husky": {
     "hooks": {
