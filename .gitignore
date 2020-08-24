@@ -6,4 +6,3 @@ node_modules
 .nrepl-port
 dev/user.cljs
 .atomist
-index.js
