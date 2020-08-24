@@ -1,0 +1,47 @@
+namespace: atomist
+name: github-config-skill
+description: github config skill
+displayName: github config skill
+license: unknown
+author: atomist
+triggers:
+  - OnNewRepo
+  - OnSchedule
+resourceProviders:
+  - name: github
+    description: GitHub
+    typeName: GitHubAppResourceProvider
+    minRequired: 1
+    maxAllowed: 1
+  - name: chat
+    displayName: Chat
+    typeName: ChatProvider
+    description: Chat
+    minRequired: 0
+    maxAllowed: 1
+commands:
+  - name: sync
+    description: check all the Repo configs
+    pattern: ^sync across repos.*$
+iconUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+homepageUrl: "https://github.com/atomist-skills/github-config-skill"
+parameters:
+  - schedule:
+      description: check regularly
+      displayName: schedule
+      name: schedule
+      defaultValue: 0 */6 * * *
+      placeHolder: 0 */6 * * *
+      required: true
+  - repoFilter:
+      description: Select repositories that should comply with this policy
+      displayName: Repo Filter
+      name: RepoFilter
+      required: false
+artifacts:
+  gcf:
+    - entryPoint: eventhandler
+      runtime: nodejs10
+      name: do-it-on-node
+      memory: 512
+      timeout: 60
