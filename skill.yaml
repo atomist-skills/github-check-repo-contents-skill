@@ -24,7 +24,7 @@ commands:
     description: check all the Repo configs
     pattern: ^sync across repos.*$
 iconUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
-homepageUrl: "https://github.com/atomist-skills/github-config-skill"
+homepageUrl: "https://github.com/atomist-skills/github-check-repo-content-skill"
 parameters:
   - string:
       description: name of license file (relative to repo root)
