@@ -9,6 +9,10 @@
     },
     {
       "type": "section",
+      "text": {
+        "text": "Repo",
+        "type": "plain_text"
+      },
       "fields": [
         {
           "type": "mrkdwn",
