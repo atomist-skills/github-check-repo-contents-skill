@@ -254,7 +254,7 @@ MIT License - [https://opensource.org/licenses/MIT](https://opensource.org/licen
 
 | Name                | Version  | Publisher       | Repository |
 | ------------------- | -------- | --------------- | ---------- |
-| `@atomist/api-cljs` | `0.4.83` | jim@atomist.com |            |
+| `@atomist/api-cljs` | `0.4.86` | jim@atomist.com |            |
 
 ## Contact
 
