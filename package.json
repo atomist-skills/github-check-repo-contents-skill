@@ -12,7 +12,7 @@
   },
   "main": "node_modules/@atomist/api-cljs/app.js",
   "devDependencies": {
-    "@atomist/skill-bundler": "^0.1.16",
+    "@atomist/skill-bundler": "^0.1.17",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "prettier": "^2.1.0"
