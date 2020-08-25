@@ -14,17 +14,15 @@ var sendBlockMessage = async function(repo, request) {
 }
 
 var checkRepo = async function(repo, request) {
+  
   console.info(`check repo ${repo.owner}/${repo.repo} license file ${repo.basedir}/${request.config.licensefile} with ${JSON.stringify(request.config)} configuration`);
 
-  // probably sufficient to just write the content of the file since this 
-  // won't make the working copy dirty when the content is up to date
-  if (request.config.commitenabled===true) {
-    await fs.promises.writeFile( `${repo.basedir}/${request.config.licensefile}`, request.config.licensecontent, (err) => {
-      console.error(`failed to write content to ${request.config.licensefile}: ${err}`);
-    });
+  if (fs.existsSync( `${repo.basedir}/${request.config.licensefile}` )) {
+    return true
+  } else {
+    console.warn(`no ${request.config.licensefile} in ${repo.owner}/${repo.repo}`);
+    return false
   }
-  
-  return true;
 }
 
 exports.handler = api.handler(
@@ -34,7 +32,7 @@ exports.handler = api.handler(
         async repo => {
           return await checkRepo(repo, request);
         },
-        {clone: true, with_commit: {message: request.config.commitmessage}}
+        {clone: true}
       );
     },
     OnSchedule: async (request) => {
@@ -42,7 +40,7 @@ exports.handler = api.handler(
         async repo => {
           return await checkRepo(repo, request);
         },
-        {clone: true, with_commit: {message: request.config.commitmessage}}
+        {clone: true}
       );
     },
     OnAnyPush: async (request) => {
@@ -50,7 +48,7 @@ exports.handler = api.handler(
         async repo => {
           return await checkRepo(repo, request);
         }, 
-        {clone: true, with_commit: {message: request.config.commitmessage}}
+        {clone: true}
       );
     }
  }
