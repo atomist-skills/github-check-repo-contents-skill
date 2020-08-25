@@ -35,7 +35,7 @@ parameters:
       description: name of the Slack channel to notify
       displayName: Slack Channel
       name: channel
-      pattern: '$#\w*?'
+      pattern: '^#\w*$'
       required: true
   - schedule:
       description: check regularly
