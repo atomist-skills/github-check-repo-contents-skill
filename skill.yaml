@@ -5,8 +5,8 @@ displayName: github config skill
 license: unknown
 author: atomist
 triggers:
-  - OnNewRepo
   - OnSchedule
+  - OnAnyPush
 resourceProviders:
   - name: github
     description: GitHub
@@ -26,6 +26,28 @@ commands:
 iconUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
 homepageUrl: "https://github.com/atomist-skills/github-config-skill"
 parameters:
+  - string:
+      description: name of license file (relative to repo root)
+      displayName: filename
+      name: licensefile
+      required: true
+  - string:
+      description: content of license file
+      displayName: content
+      name: licensecontent
+      lineStyle: multiple
+      required: true
+  - string:
+      name: commitmessage
+      displayName: commit message
+      description: Commit message to use if a change is made
+      required: true
+  - boolean:
+      name: commitenabled
+      displayName: Commit Enabled
+      description: Will commit new license file if it's missing or out of date
+      defaultValue: false
+      required: true
   - schedule:
       description: check regularly
       displayName: schedule
