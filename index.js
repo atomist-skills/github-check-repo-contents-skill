@@ -4,12 +4,15 @@ var fs = require('fs');
 // Slack messages are an array of blocks
 // they can be sent to #channels or @users.
 var sendBlockMessage = async function(repo, request) {
+  var message = JSON.parse(await fs.promises.readFile("blocks/notification.json"));
+
+  message.blocks[0].text.text = `missing ${request.config.licensefile} file`;
+  message.blocks[1].fields[0].text = `*Org:*\n${repo.owner}`;
+  message.blocks[1].fields[1].text = `*Repo:*\n${repo.repo}`;
+
   return await request.blockMessage(
-    [{type: "section",
-      text: {type: "mrkdwn",
-             text: `missing license file in ${repo.owner}/${repo.repo}`}},
-    ],
-    "#test-channel"
+    message.blocks,
+    request.config.channel
   );
 }
 
@@ -46,7 +49,10 @@ exports.handler = api.handler(
     OnAnyPush: async (request) => {
       await request.withRepo(
         async repo => {
-          return await checkRepo(repo, request);
+          if (!await checkRepo(repo, request)) {
+            await sendBlockMessage(repo, request);
+          }
+          return true;
         }, 
         {clone: true}
       );

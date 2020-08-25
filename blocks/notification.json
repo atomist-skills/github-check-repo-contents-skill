@@ -1,0 +1,39 @@
+{
+  "blocks": [
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "missing license.txt file"
+      }
+    },
+    {
+      "type": "section",
+      "fields": [
+        {
+          "type": "mrkdwn",
+          "text": "*Org:*\nAtomisthq"
+        },
+        {
+          "type": "mrkdwn",
+          "text": "*Repo:*\nbot-service"
+        }
+      ]
+    },
+    {
+      "type": "actions",
+      "elements": [
+        {
+          "type": "button",
+          "text": {
+            "type": "plain_text",
+            "emoji": true,
+            "text": "Raise PR"
+          },
+          "style": "primary",
+          "value": "click_me_123"
+        }
+      ]
+    }
+  ]
+}

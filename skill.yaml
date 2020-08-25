@@ -31,6 +31,12 @@ parameters:
       displayName: filename
       name: licensefile
       required: true
+  - string:
+      description: name of the Slack channel to notify
+      displayName: Slack Channel
+      name: channel
+      pattern: '$#\w*?'
+      required: true
   - schedule:
       description: check regularly
       displayName: schedule
