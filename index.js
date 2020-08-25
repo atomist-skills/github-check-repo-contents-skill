@@ -14,12 +14,12 @@ var sendBlockMessage = async function(repo, request) {
 }
 
 var checkRepo = async function(repo, request) {
-  console.info(`check repo ${repo.owner}/${repo.repo} with ${JSON.stringify(request.config)} configuration`);
+  console.info(`check repo ${repo.owner}/${repo.repo} license file ${repo.basedir}/${request.config.licensefile} with ${JSON.stringify(request.config)} configuration`);
 
   // probably sufficient to just write the content of the file since this 
   // won't make the working copy dirty when the content is up to date
   if (request.config.commitenabled===true) {
-    await fs.promises.writeFile( request.config.licensefile, request.config.licensecontent, (err) => {
+    await fs.promises.writeFile( `${repo.basedir}/${request.config.licensefile}`, request.config.licensecontent, (err) => {
       console.error(`failed to write content to ${request.config.licensefile}: ${err}`);
     });
   }

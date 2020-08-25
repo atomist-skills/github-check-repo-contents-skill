@@ -54,7 +54,7 @@ parameters:
       name: schedule
       defaultValue: 0 */6 * * *
       placeHolder: 0 */6 * * *
-      required: true
+      required: false
   - repoFilter:
       description: Select repositories that should comply with this policy
       displayName: Repo Filter
