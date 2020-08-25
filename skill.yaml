@@ -1,7 +1,7 @@
 namespace: atomist
-name: github-config-skill
-description: github config skill
-displayName: github config skill
+name: github-check-repo-content-skill
+description: github check repo content skill
+displayName: github check repo content skill
 license: unknown
 author: atomist
 triggers:
