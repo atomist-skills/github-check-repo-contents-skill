@@ -31,11 +31,11 @@ parameters:
       displayName: filename
       name: licensefile
       required: true
-  - string:
-      description: name of the Slack channel to notify
+  - chatChannels:
+      description: Choose a Slack channel for missing file notifications
       displayName: Slack Channel
+      minRequired: 1
       name: channel
-      pattern: '^#\w*$'
       required: true
   - schedule:
       description: check regularly
