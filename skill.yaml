@@ -17,12 +17,12 @@ resourceProviders:
     displayName: Chat
     typeName: ChatProvider
     description: Chat
-    minRequired: 0
+    minRequired: 1
     maxAllowed: 1
 commands:
   - name: sync
     description: check all the Repo configs
-    pattern: ^sync across repos.*$
+    pattern: ^check all repos.*$
 iconUrl: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
 homepageUrl: "https://github.com/atomist-skills/github-check-repo-content-skill"
 parameters:
