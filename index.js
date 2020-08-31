@@ -12,7 +12,7 @@ var sendBlockMessage = async function(repo, request) {
 
   return await request.blockMessage(
     message.blocks,
-    request.config.channel
+    `#${request.config.channel[0].channelName}`
   );
 }
 
