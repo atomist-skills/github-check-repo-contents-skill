@@ -10,10 +10,9 @@ var sendBlockMessage = async function(repo, request) {
   message.blocks[1].fields[0].text = `*Org:*\n${repo.owner}`;
   message.blocks[1].fields[1].text = `*Repo:*\n${repo.repo}`;
 
-  return await request.blockMessage(
-    message.blocks,
-    `#${request.config.channel[0].channelName}`
-  );
+  return Promise.all(request.config.channel.map(async (channel) => {
+    return request.blockMessage(message.blocks,`#${channel.channelName}`);
+  }));
 }
 
 var checkRepo = async function(repo, request) {
@@ -28,32 +27,33 @@ var checkRepo = async function(repo, request) {
   }
 }
 
+
+var eachRepo = (request) => { 
+  return async (repo) => {
+    if (repo.private===false && !await checkRepo(repo, request)) {
+      await sendBlockMessage(repo, request);            
+    }
+    return true;
+  }
+}
+
 exports.handler = api.handler(
  {
     sync: async (request) => {
       await request.withRepoIterator(
-        async repo => {
-          return await checkRepo(repo, request);
-        },
+        eachRepo(request),
         {clone: true}
       );
     },
     OnSchedule: async (request) => {
       await request.withRepoIterator(
-        async repo => {
-          return await checkRepo(repo, request);
-        },
+        eachRepo(request),
         {clone: true}
       );
     },
     OnAnyPush: async (request) => {
       await request.withRepo(
-        async repo => {
-          if (!await checkRepo(repo, request)) {
-            await sendBlockMessage(repo, request);
-          }
-          return true;
-        }, 
+        eachRepo(request), 
         {clone: true}
       );
     }

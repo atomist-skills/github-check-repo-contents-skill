@@ -37,6 +37,12 @@ parameters:
       minRequired: 1
       name: channel
       required: true
+  - boolean:
+      description: "Check only public repositories"
+      displayName: "Check Public Only"
+      name: publicOnly
+      defaultValue: false
+      required: true
   - schedule:
       description: check regularly
       displayName: schedule

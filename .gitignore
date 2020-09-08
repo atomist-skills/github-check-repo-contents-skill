@@ -6,3 +6,4 @@ node_modules
 .nrepl-port
 dev/user.cljs
 .atomist
+**/.DS_Store
