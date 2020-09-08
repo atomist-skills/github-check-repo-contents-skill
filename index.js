@@ -27,10 +27,9 @@ var checkRepo = async function(repo, request) {
   }
 }
 
-
 var eachRepo = (request) => { 
   return async (repo) => {
-    if (repo.private===false && !await checkRepo(repo, request)) {
+    if ((request.config.publicOnly===false || (request.config.publicOnly&&repo.private===false)) && !await checkRepo(repo, request)) {
       await sendBlockMessage(repo, request);            
     }
     return true;
