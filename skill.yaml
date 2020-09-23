@@ -60,5 +60,5 @@ artifacts:
     - entryPoint: eventhandler
       runtime: nodejs10
       name: do-it-on-node
-      memory: 512
+      memory: 1024
       timeout: 60
